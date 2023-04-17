@@ -1,8 +1,7 @@
 export default function Header(){
     return (
-        <section>
+        <header>
             <h1>LabReceitas</h1>
-            <p>Receitas</p>
-        </section>
+        </header>
     )
 }
