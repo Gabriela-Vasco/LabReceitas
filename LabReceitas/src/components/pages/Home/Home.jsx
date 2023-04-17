@@ -1,15 +1,16 @@
 import { Header, Footer } from "../../organisms";
+import "./Home.css"
 
 export default function Home(){
     return (
         <body>
-            <section>
-                <Header />
-            </section>
+            <Header />
 
             <section>
-                <Footer />
+                <p>Olá</p>
             </section>
+
+            <Footer />
         </body>
     )
 }
