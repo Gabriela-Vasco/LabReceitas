@@ -1,12 +1,10 @@
-import { useRecipeContext } from "../../../contexts/RecipeContext";
-
-const RecipeItem = ({ recipe }) => {
-    const {deleteRecipe, selectRecipe } = useRecipeContext();
-
+const RecipeItem = ({ recipe, deleteRecipe, handleRecipeSelect, setSelectedRecipe }) => {
     const handleDelete = () => {
         deleteRecipe(recipe.id);
-        selectRecipe(null);
+        setSelectedRecipe(null);
     };
+
+    console.log(recipe)
     
     return (
         <div className="recipe-item">
@@ -16,7 +14,7 @@ const RecipeItem = ({ recipe }) => {
             <checkbox>{recipe.lactose}</checkbox>
             <checkbox>{recipe.gluten}</checkbox>
             <button onClick={handleDelete}>Excluir</button>
-            <button onClick={() => selectRecipe(recipe.id)}>Selecionar</button>
+            <button onClick={() => handleRecipeSelect(recipe)}>Selecionar</button>
         </div>
     );
 };

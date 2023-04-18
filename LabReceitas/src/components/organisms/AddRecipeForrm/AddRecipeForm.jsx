@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import {useRecipeContext} from "../../../contexts/RecipeContext"
 
-const AddRecipeForm = () => {
-        const { addRecipe, selectedRecipe, updateRecipe, selectRecipe } = useRecipeContext();
+const AddRecipeForm = ({addRecipe, selectedRecipe, updateRecipe, setSelectedRecipe}) => {
 
         const [formValues, setFormValues] = useState({
             name: "",
@@ -37,7 +35,7 @@ const AddRecipeForm = () => {
                     lactose: formValues.lactose,
                     gluten: formValues.gluten
                 });
-                selectRecipe(null);
+                setSelectedRecipe(null);
             } else {
                 addRecipe({
                     id: Date.now(),
