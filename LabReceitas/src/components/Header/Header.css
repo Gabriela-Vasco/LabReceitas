@@ -2,9 +2,10 @@ header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #E1EDDB;
+    background-color: #8dbe7a;
     margin: 0;
     padding: 20px;
     position: relative;
+    max-width: 100%;
 }
 
