@@ -1,53 +1,32 @@
-import React, { useState, useEffect } from "react";
-import RecipeForm from "./components/RecipeForm/RecipeForm"
-import RecipeList from "./components/RecipeList/RecipeList";
-import {Header} from "./components/Header/Header"
-import {Footer} from "./components/Footer/Footer"
 import "./App.css"
+import Home from "./pages/Home/Home";
 
 function App() {
-  const [recipes, setRecipes] = useState([]);
-
-  useEffect(() => {
-    const storedRecipes = JSON.parse(localStorage.getItem("recipes")) || [];
-    setRecipes(storedRecipes);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("recipes", JSON.stringify(recipes));
-  }, [recipes]);
-
-  const handleAddRecipe = (newRecipe) => {
-    setRecipes((prevRecipes) => [...prevRecipes, newRecipe]);
-  };
-
-  const handleEditRecipe = (updatedRecipe) => {
-    setRecipes((prevRecipes) =>
-      prevRecipes.map((recipe) =>
-        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
-      )
-    );
-  };
-
-  const handleDeleteRecipe = (recipeToDelete) => {
-    setRecipes((prevRecipes) =>
-      prevRecipes.filter((recipe) => recipe.id !== recipeToDelete.id)
-    );
-  };
 
   return (
     <div>
-      <Header />
-      <RecipeForm onSubmit={handleAddRecipe} />
-      <RecipeList
-        filteredRecipes={recipes}
-        recipes={recipes}
-        onEditRecipe={handleEditRecipe}
-        onDeleteRecipe={handleDeleteRecipe}
-      />
-      <Footer />
+      <Home />
     </div>
   );
 }
 
 export default App;
+
+//TODO:
+//[] - Implementar React Router 
+  //[] - Componente NavBar/Header
+//[] - Página de Erro
+//[] - Página de Receitas
+//[] - Usar o JSONserver para armazenar as receitas ao invés do LocalStorage
+//[] - Instalar e usar em alguma imagem na Home a biblioteca do Gabriel de imagens
+//[] - Estilizar melhor o projeto
+//[] - Trabalhar na responsividadde
+//[] - Ver sobre indexação no Google(SEO) e aplicar no projeto, assim como fazer com que parte dele 
+//seja servido por SSR(Server Side Rendering) e não apenas por CSR(Client Side Rendering)
+//[] - Aplicar filtros para as receitas, ordenação por sorting (?)
+//[] - Aplicar paginação ma página de receitas
+//[] - Criar uma página de detalhe da receita
+//[] - As receitas devem ter uma url única na página de detalhe da receita, os filtros e a 
+//ordenação também devem ser acessados via parâmetros na url
+
+
