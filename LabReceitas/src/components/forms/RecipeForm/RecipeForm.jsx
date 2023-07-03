@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Resizer from "react-image-file-resizer";
+import { nanoid } from 'nanoid'
 import "./RecipeForm.css";
 
 export default function RecipeForm() {
@@ -6,9 +8,53 @@ export default function RecipeForm() {
         name: "",
         ingredients: "",
         instructions: "",
+        image: "",
         containsDairy: false,
         containsGluten: false,
+        id: ""
     });
+    const [resizedImage, setResizedImage] = useState(null);
+    const [recipesArray, setRecipesArray] = useState(JSON.parse(localStorage.getItem("recipes"))) || [];
+
+    let recipeWithImage = {
+        name: recipeData.name,
+        ingredients: recipeData.ingredients,    
+        instructions: recipeData.instructions,
+        image: resizedImage,
+        containsDairy: recipeData.containsDairy,
+        containsGluten: recipeData.containsGluten,
+        id: recipeData.id
+    }
+
+    useEffect(() => {
+        localStorage.setItem("recipes", JSON.stringify(recipesArray));
+    }, [recipesArray])
+
+  const resizeFile = (file) =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        300,
+        300,
+        "JPEG",
+        100,
+        0,
+        (imageUri) => {
+          resolve(imageUri);
+        },
+        "base64"
+      );
+    });
+
+  const onChange = async (event) => {
+    try {
+      const file = event.target.files[0];
+      const image = await resizeFile(file);
+      setResizedImage(image);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
     function handleChange(event){
         const {name, value, type, checked} = event.target
@@ -20,7 +66,18 @@ export default function RecipeForm() {
 
     function handleSubmit(event){
         event.preventDefault()
-        localStorage.setItem("recipe", JSON.stringify(recipeData))
+        recipeWithImage = {
+            name: recipeData.name,
+            ingredients: recipeData.ingredients,
+            instructions: recipeData.instructions,
+            image: resizedImage,
+            containsDairy: recipeData.containsDairy,
+            containsGluten: recipeData.containsGluten,
+            id: nanoid()
+        }
+        setRecipesArray(recipesArray => [...recipesArray, recipeWithImage])
+
+
         setRecipeData({
             name: "",
             ingredients: "",
@@ -28,6 +85,7 @@ export default function RecipeForm() {
             containsDairy: false,
             containsGluten: false,
         })
+        setResizedImage(null);
     }
 
     return(
@@ -54,6 +112,14 @@ export default function RecipeForm() {
                     id="instructions"
                     onChange={handleChange}
                     value={recipeData.instructions}
+                />
+                <label htmlFor="image">Imagem:</label>
+                <input
+                    type="file"
+                    name="image"
+                    id="image"
+                    accept="image/*"
+                    onChange={onChange} 
                 />
                 <label>Restrições:</label>
                 <input
