@@ -1,13 +1,19 @@
-import { useState, useEffect } from "react";
-import RecipeForm from "../../components/forms/RecipeForm/RecipeForm";
+import { useState} from "react";
+
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 
+import "./Home.css"
+
+
 
 export default function Home() {
-    const [recipes, setRecipes] = useState(JSON.parse(localStorage.getItem("recipes"))) ;
-    console.log(recipes)
+    const [recipes, setRecipes] = useState(JSON.parse(localStorage.getItem("recipes")) || []) ;
+   
+  
+    
+
   return (
     <>
       <Header />
@@ -26,7 +32,6 @@ export default function Home() {
                         )
                     })}
             </section>
-      <RecipeForm />
       <Footer />
     </>
   );

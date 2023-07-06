@@ -2,11 +2,11 @@ form {
     display: flex;
     flex-direction: column;
     width: 50%;
-    margin: auto;
-    padding: 20px;
-    background-color: #bedfa8;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    margin: 0 auto;
+    background-color: #C0C0C0;
+    border: none;
+    padding: 0 0 3em 0;
+
   }
   
   h2 {
@@ -33,19 +33,40 @@ form {
     height: 100px;
   }
   
-  button[type="submit"] {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 20px;
+  input:focus, textarea:focus{
+    outline: none;
+    border: 0.5px solid #CCCCCC;
+    background-color: #E6CFCF;
+  }
+
+  #imageUpload {
+    display: none; 
   }
   
-  button[type="submit"]:hover {
-    background-color: #3e8e41;
+  #uploadLabel {
+    display: inline-block;
+    padding: 10px 15px;
+    width: 97%;
+    background-color: #E6CFCF;
+    cursor: pointer;
+  }
+  
+  #uploadLabel:hover {
+    box-shadow: 10px 10px 10px rgba(77, 76, 76, 0.1);
+  }
+
+  .checkboxes {
+    display: flex;
+    align-items: center;
+  }
+
+  .checkboxes label {
+    margin-left: 1em;
+    margin-top: 0.5em;
+  }
+
+  form button {
+    width: 105%;
+    margin: 0 auto
   }
   

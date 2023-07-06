@@ -14,7 +14,7 @@ export default function RecipeForm() {
         id: ""
     });
     const [resizedImage, setResizedImage] = useState(null);
-    const [recipesArray, setRecipesArray] = useState(JSON.parse(localStorage.getItem("recipes"))) || [];
+    const [recipesArray, setRecipesArray] = useState(JSON.parse(localStorage.getItem("recipes")) || []) ;
 
     let recipeWithImage = {
         name: recipeData.name,
@@ -75,7 +75,9 @@ export default function RecipeForm() {
             containsGluten: recipeData.containsGluten,
             id: nanoid()
         }
-        setRecipesArray(recipesArray => [...recipesArray, recipeWithImage])
+
+        console.log(recipeWithImage)
+        setRecipesArray(prevRecipesArray => [...prevRecipesArray, recipeWithImage])
 
 
         setRecipeData({
@@ -86,6 +88,7 @@ export default function RecipeForm() {
             containsGluten: false,
         })
         setResizedImage(null);
+        window.location.reload();
     }
 
     return(
@@ -113,15 +116,18 @@ export default function RecipeForm() {
                     onChange={handleChange}
                     value={recipeData.instructions}
                 />
-                <label htmlFor="image">Imagem:</label>
+                <br/>
+                <label htmlFor="imageUpload" id="uploadLabel">Adicione uma imagem</label>
                 <input
                     type="file"
-                    name="image"
-                    id="image"
+                    name="imageUpload"
+                    id="imageUpload"
                     accept="image/*"
                     onChange={onChange} 
                 />
+                <br />
                 <label>Restrições:</label>
+                <div className="checkboxes">
                 <input
                     type="checkbox"
                     name="containsDairy"
@@ -130,6 +136,8 @@ export default function RecipeForm() {
                     checked={recipeData.containsDairy}
                 />
                 <label htmlFor="containsDairy">Lactose</label>
+                </div>
+                <div className="checkboxes">
                 <input
                     type="checkbox"
                     name="containsGluten"
@@ -138,6 +146,8 @@ export default function RecipeForm() {
                     checked={recipeData.containsGluten}
                 />  
                 <label htmlFor="containsGluten">Glúten</label>
+                </div>
+                <br />
                 <button>Enviar</button>
             </form>
         </div>
