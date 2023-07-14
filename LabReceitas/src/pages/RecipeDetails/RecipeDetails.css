@@ -1,0 +1,55 @@
+.recipe-details-container {
+    background: url(../../assets/dish2.jpg) no-repeat fixed;
+    background-size: cover;
+	background-position: bottom;
+	opacity: 0.90;
+	height: 250px;
+}
+
+.recipe-details-container .modal-button {
+    visibility: hidden;
+}
+
+.recipe-details {
+    margin: 0 auto;
+    padding: 5em 3em;
+    width: 70%;
+}
+
+.recipe-details-text{
+    margin-top: 15em;
+    padding: 6em 5em 4em;
+    background-color:#e6cfcf;
+    border-radius: 0.3em;
+    border: 0.1em solid #e0bebe;
+}
+
+.recipe-details span {
+    line-height: 2em;
+    font-size: 18px;
+}
+
+.img-recipe-details {
+    width: 100%;
+    border-radius: 0.3em;
+    /* box-shadow: 0.5rem 0.5rem black, -0.5rem -0.5rem #ccc; */
+    box-shadow: 0px 4px 3px rgba(0,0,0,0.1);
+    max-width: 30rem;
+    position: absolute;
+    right: 50%;
+    left: 30%
+}
+
+
+.restrictions {
+    padding-top: 1em;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 10px;
+    opacity: 0.8;
+}
+
+.restrictions img {
+    margin-left: 0.5em
+}

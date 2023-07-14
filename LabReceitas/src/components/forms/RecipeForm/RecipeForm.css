@@ -1,12 +1,13 @@
-form {
+.recipe-form {
     display: flex;
     flex-direction: column;
     width: 50%;
     margin: 0 auto;
-    background-color: #C0C0C0;
+    background-color: #222222;
     border: none;
     padding: 0 0 3em 0;
-
+    font-size: 1.1em;
+    color: #F9F9F9
   }
   
   h2 {
@@ -23,9 +24,7 @@ form {
   textarea {
     width: 100%;
     padding: 8px;
-    border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 1rem;
     margin-bottom: 10px;
   }
   
@@ -35,8 +34,8 @@ form {
   
   input:focus, textarea:focus{
     outline: none;
-    border: 0.5px solid #CCCCCC;
-    background-color: #E6CFCF;
+    border: 1px solid #E6CFCF;
+    background-color: #F1F1F1;
   }
 
   #imageUpload {
@@ -49,24 +48,63 @@ form {
     width: 97%;
     background-color: #E6CFCF;
     cursor: pointer;
-  }
-  
-  #uploadLabel:hover {
-    box-shadow: 10px 10px 10px rgba(77, 76, 76, 0.1);
+    color: #222222
   }
 
-  .checkboxes {
-    display: flex;
-    align-items: center;
+  input[type=checkbox] {
+    display: none;
+    pointer-events:none;
+  } 
+
+  input[type=checkbox] + label {
+    cursor: pointer;
+    display:grid;
+    grid-template-columns: auto 3fr;
+  } 
+
+  input[type=checkbox]:checked + label .check {
+    stroke-dashoffset: 0;
+  } 
+
+  svg {
+    width: 1.8em;
+    stroke: #E6CFCF;
+    stroke-width: 6;
+    fill: white;
   }
 
-  .checkboxes label {
-    margin-left: 1em;
-    margin-top: 0.5em;
-  }
+  .box {
+    stroke-dasharray: 320;
+    stroke-dashoffset: 0;
+    fill: #222222;
+    transition: stroke-dashoffset .3s linear;
+}
 
-  form button {
+.check {
+    stroke-dasharray: 70;
+    stroke-dashoffset: 70;
+    fill: none;
+    transition: stroke-dashoffset .3s linear;
+}
+
+.checkboxes span {
+  margin-left: 0.5em;
+  margin-top: 0.1em;
+}
+
+  .form-button {
     width: 105%;
-    margin: 0 auto
-  }
+    border: none;
+    background-color: #E6CFCF;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-weight: bold;
+    padding: 0.7em;
+    border-radius: 0.5em;
+    margin-right: 1em;
+    color: #222222;
+    font-size: 1em;
+}
+
+
   

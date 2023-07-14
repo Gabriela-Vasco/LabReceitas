@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import Resizer from "react-image-file-resizer";
 import { nanoid } from 'nanoid'
 import "./RecipeForm.css";
+import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 export default function RecipeForm() {
     const [recipeData, setRecipeData] = useState({
@@ -15,6 +18,7 @@ export default function RecipeForm() {
     });
     const [resizedImage, setResizedImage] = useState(null);
     const [recipesArray, setRecipesArray] = useState(JSON.parse(localStorage.getItem("recipes")) || []) ;
+    const [selectedFile, setSelectedFile] = useState(null);
 
     let recipeWithImage = {
         name: recipeData.name,
@@ -46,11 +50,14 @@ export default function RecipeForm() {
       );
     });
 
+    const notify = () => toast("Receita cadastrada com sucesso!");
+
   const onChange = async (event) => {
     try {
       const file = event.target.files[0];
       const image = await resizeFile(file);
       setResizedImage(image);
+      setSelectedFile(file)
     } catch (err) {
       console.log(err);
     }
@@ -88,12 +95,14 @@ export default function RecipeForm() {
             containsGluten: false,
         })
         setResizedImage(null);
-        window.location.reload();
+        setSelectedFile(null);
+        notify()
+        window.location.reload()
     }
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="recipe-form">
                 <label htmlFor="name" >Nome da Receita:</label>
                 <input
                     type="text"
@@ -117,7 +126,9 @@ export default function RecipeForm() {
                     value={recipeData.instructions}
                 />
                 <br/>
-                <label htmlFor="imageUpload" id="uploadLabel">Adicione uma imagem</label>
+                <label htmlFor="imageUpload" id="uploadLabel">
+                    {selectedFile ? selectedFile.name : "Adicionar Imagem"}
+                </label>
                 <input
                     type="file"
                     name="imageUpload"
@@ -135,7 +146,13 @@ export default function RecipeForm() {
                     id="containsDairy"
                     checked={recipeData.containsDairy}
                 />
-                <label htmlFor="containsDairy">Lactose</label>
+                <label htmlFor="containsDairy">
+                    <svg viewBox="0 0 100 100">
+                        <path class="box" d="M82,89H18c-3.87,0-7-3.13-7-7V18c0-3.87,3.13-7,7-7h64c3.87,0,7,3.13,7,7v64C89,85.87,85.87,89,82,89z"/>
+                        <polyline class="check" points="25.5,53.5 39.5,67.5 72.5,34.5 "/>
+                    </svg>
+                    <span>Lactose</span>
+                </label>
                 </div>
                 <div className="checkboxes">
                 <input
@@ -145,10 +162,25 @@ export default function RecipeForm() {
                     onChange={handleChange}
                     checked={recipeData.containsGluten}
                 />  
-                <label htmlFor="containsGluten">Glúten</label>
+                <label htmlFor="containsGluten">
+                    <svg viewBox="0 0 100 100">
+                        <path class="box" d="M82,89H18c-3.87,0-7-3.13-7-7V18c0-3.87,3.13-7,7-7h64c3.87,0,7,3.13,7,7v64C89,85.87,85.87,89,82,89z"/>
+                        <polyline class="check" points="25.5,53.5 39.5,67.5 72.5,34.5 "/>
+                    </svg>
+                    <span>Glúten</span>
+                </label>
                 </div>
                 <br />
-                <button>Enviar</button>
+                <button className="form-button">Enviar</button>
+                <ToastContainer
+                    position="top-center"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    closeOnClick={false}
+                    rtl={false}
+                    pauseOnHover={false}
+                    theme="light"
+                />
             </form>
         </div>
     )

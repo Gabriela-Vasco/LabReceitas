@@ -1,23 +1,14 @@
+import { Link } from "react-router-dom"
 import "./RecipeCard.css"
 
-export default function RecipeCard({ name, ingredients, instructions, image, containsDairy, containsGluten}) {
+export default function RecipeCard({ id, name, image, handleDelete}) {
     return (
-        <div className="recipe-card">
-            <img src={image} alt={name} />
-            <br />
+        <div className="recipe-card" key={id}>
+            <button className="delete-button" onClick={handleDelete}>X</button>
+            <Link to={`/recipe/${id}`}>
+            <img src={image} alt={name} className="img-recipe-card"/>
             <h1>{name}</h1>
-            <hr />
-            <div className="span-container">
-                <strong>Ingredientes:</strong>
-                <span>{ingredients}</span>
-                <br />
-                <strong>Modo de preparo:</strong>
-                <span>{instructions}</span>
-                <br />
-                <span className="restricoes">{containsDairy && "Contém Lactose"}</span>
-                <br />
-                <span className="restricoes">{containsGluten && "Contém Glúten"}</span>
-            </div>
+            </Link>
         </div>
     )
 }
