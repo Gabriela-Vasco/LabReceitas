@@ -32,6 +32,47 @@
 	padding-top: 0.2em;
 }
 
+
+.filter-options input[type=checkbox] {
+    display: none;
+    pointer-events:none;
+  } 
+
+.filter-options input[type=checkbox] + label {
+    cursor: pointer;
+    display:grid;
+    grid-template-columns: auto 3fr;
+  } 
+
+  .filter-options input[type=checkbox]:checked + label .check {
+    stroke-dashoffset: 0;
+  } 
+
+  .filter-options svg {
+    width: 1.8em;
+    stroke: #222222;
+    stroke-width: 6;
+    fill: #222222;
+  }
+
+  .filter-options  .box {
+    stroke-dasharray: 320;
+    stroke-dashoffset: 0;
+    fill: #ffffff;
+    transition: stroke-dashoffset .3s linear;
+}
+
+.filter-options .check {
+    stroke-dasharray: 70;
+    stroke-dashoffset: 70;
+    fill: none;
+    transition: stroke-dashoffset .3s linear;
+}
+.filter-options .checkboxes span {
+  margin-left: 0.5em;
+  margin-top: 0.1em;
+}
+
 @media screen and (max-width: 600px) {
 	.card-catalog {
 		margin: 3em 0;
