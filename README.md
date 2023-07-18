@@ -24,7 +24,7 @@ Ele faz parte do curso FuturoDev, sendo o projeto avaliativo do segundo módulo.
 A lista de receitas é salva no localStorage do navegador e será carregada automaticamente sempre que a página for reaberta.
 
 ##
-![LabReceitas_Home]([https://github.com/Gabriela-Vasco/LabReceitas/assets/114448038/67f0316d-6ff0-476e-a586-befcf0918a5a](https://github.com/Gabriela-Vasco/LabReceitas/blob/master/LabReceitas_Home.PNG)https://github.com/Gabriela-Vasco/LabReceitas/blob/master/LabReceitas_Home.PNG)
+[![LabReceitas_Home]([[https://github.com/Gabriela-Vasco/LabReceitas/assets/114448038/67f0316d-6ff0-476e-a586-befcf0918a5a](https://github.com/Gabriela-Vasco/LabReceitas/blob/master/LabReceitas_Home.PNG)])]
 
 
 
