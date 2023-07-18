@@ -1,6 +1,6 @@
 # LabReceitas:
 
-Este projeto foi desenvolvido utilizando React (Vite) e permite que o usuário adicione e exclua receitas de acordo com suas preferências alimentares.
+Este projeto foi desenvolvido utilizando React (Vite) e permite que o usuário adicione, exclua e filtre receitas de acordo com suas preferências alimentares.
 Ele faz parte do curso FuturoDev, sendo o projeto avaliativo do segundo módulo.
 
 ## Requisitos
